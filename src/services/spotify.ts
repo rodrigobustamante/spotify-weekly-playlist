@@ -1,10 +1,12 @@
-import spotify from 'spotify-web-api-node';
-import {} from 'dotenv/config'
+import Spotify from 'spotify-web-api-node';
+import dotenv from 'dotenv';
 
-const Spotify = new spotify({
+dotenv.config();
+
+const spotify = new Spotify({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   redirectUri: process.env.REDIRECTURI,
 });
 
-export default Spotify;
+export default spotify;
