@@ -1,0 +1,19 @@
+{
+  "name": "spotify-weekly-playlist",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+  },
+  "dependencies": {
+    "@types/node": "^12.12.14",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.1",
+    "poetic": "1.1",
+    "spotify-web-api-node": "^4.0.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
+  }
+}
