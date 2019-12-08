@@ -7,6 +7,7 @@ spotifyApi.setAccessToken(process.env.SPOTIFY_ACCESS_TOKEN);
 spotifyApi.setRefreshToken(process.env.SPOTIFY_REFRESH_TOKEN);
 
 const playlistName = `Discovery Weekend, ${formatDate(new Date)}`;
+const playlistOptions = { public: false };
 
 const getCurrentUserId = async (): Promise<string> => {
   let userId = null;
@@ -37,7 +38,7 @@ const persistWeeklyPlaylist = async (): Promise<void> => {
 
     const [songsURI, playlistId] = await Promise.all([
       spotifyApi.getPlaylist(weeklyPlaylistId).then(({ body }) => extractSongURI(body)),
-      spotifyApi.createPlaylist(loggedUserId, playlistName, { public: false }).then(({ body }) => body.id),
+      spotifyApi.createPlaylist(loggedUserId, playlistName, playlistOptions).then(({ body }) => body.id),
     ]);
 
     await spotifyApi.addTracksToPlaylist(playlistId, songsURI);
