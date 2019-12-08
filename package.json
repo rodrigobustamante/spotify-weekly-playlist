@@ -12,9 +12,11 @@
     "code:check:rules": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
   },
   "dependencies": {
+    "@sentry/node": "5.10.1",
     "@types/dotenv": "^8.2.0",
     "@types/node": "^12.12.14",
     "@types/spotify-web-api-node": "^4.0.1",
+    "date-fns": "^2.8.1",
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.1",
     "spotify-web-api-node": "^4.0.0",
