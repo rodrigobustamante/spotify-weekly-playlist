@@ -1,4 +1,4 @@
-import { formatDate, extractSongURI } from './utils/helpers';
+import { formatDate, extractSongsURI } from './utils/helpers';
 import spotifyApi from './services/spotify';
 
 // TODO: Implement logs service, a.K.a Sentry
@@ -37,7 +37,7 @@ const persistWeeklyPlaylist = async (): Promise<void> => {
       .then(({ body }) => body.playlists.items[0].id);
 
     const [songsURI, playlistId] = await Promise.all([
-      spotifyApi.getPlaylist(weeklyPlaylistId).then(({ body }) => extractSongURI(body)),
+      spotifyApi.getPlaylist(weeklyPlaylistId).then(({ body }) => extractSongsURI(body)),
       spotifyApi.createPlaylist(loggedUserId, playlistName, playlistOptions).then(({ body }) => body.id),
     ]);
 

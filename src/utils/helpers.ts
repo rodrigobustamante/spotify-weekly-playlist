@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import format from 'date-fns/format';
 
 /**
  *
@@ -6,7 +6,7 @@ import { format } from 'date-fns';
  *
  * @returns String with the date formatted
  */
-export const formatDate = (date): string => date ? format(date, 'yyyy-MM-d') : format(new Date(), 'yyyy-MM-d');
+export const formatDate = (date: Date): string => date ? format(date, 'yyyy-MM-d') : format(new Date(), 'yyyy-MM-d');
 
 /**
  *
@@ -16,4 +16,6 @@ export const formatDate = (date): string => date ? format(date, 'yyyy-MM-d') : f
  *
  * @returns Array with the extracted URI from the playlist songs
  */
-export const extractSongURI = (data): Array<string> => data.tracks.items.map(item => item.track.uri);
+export const extractSongsURI = (data: SpotifyApi.PlaylistObjectFull): Array<string> => {
+  return data.tracks.items.map((item: SpotifyApi.PlaylistTrackObject) => item.track.uri);
+}
