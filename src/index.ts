@@ -29,7 +29,7 @@ const getCurrentUserId = async (): Promise<string> => {
   return userId;
 }
 
-const persistWeeklyPlaylist = async (): Promise<void> => {
+(async (): Promise<void> => {
   try {
     const loggedUserId = await getCurrentUserId();
     const weeklyPlaylistId = await spotifyApi
@@ -48,6 +48,4 @@ const persistWeeklyPlaylist = async (): Promise<void> => {
     console.log(error);
     throw new Error(error);
   }
-}
-
-persistWeeklyPlaylist();
+})();
