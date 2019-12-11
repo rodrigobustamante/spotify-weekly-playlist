@@ -1,12 +1,21 @@
-import format from 'date-fns/format';
-
 /**
  *
  * @param date {Date} The date to be formatted.
+ * @param addTime {boolean} If this value is true, append the time to the return value.
  *
  * @returns String with the date formatted
  */
-export const formatDate = (date: Date): string => date ? format(date, 'yyyy-MM-d') : format(new Date(), 'yyyy-MM-d');
+export const formatDate = (date: Date, addTime = false): string => {
+  const dateToFormat = date || new Date();
+  const dateFormatted = `${dateToFormat.getFullYear()}-${date.getMonth() +
+    1}-${dateToFormat.getDate()}`;
+
+  if (addTime) {
+    return `${dateFormatted} ${dateToFormat.getHours()}:${dateToFormat.getMinutes()}:${dateToFormat.getSeconds()}`;
+  }
+
+  return dateFormatted;
+};
 
 /**
  *
@@ -18,4 +27,4 @@ export const formatDate = (date: Date): string => date ? format(date, 'yyyy-MM-d
  */
 export const extractSongsURI = (data: SpotifyApi.PlaylistObjectFull): Array<string> => {
   return data.tracks.items.map((item: SpotifyApi.PlaylistTrackObject) => item.track.uri);
-}
+};
