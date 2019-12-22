@@ -1,5 +1,6 @@
 import spotifyApi from '../services/spotify';
 import { extractSongsURI, formatDate } from './helpers';
+import sendTelegramMessage from './telegraf';
 
 spotifyApi.setAccessToken(process.env.SPOTIFY_ACCESS_TOKEN);
 spotifyApi.setRefreshToken(process.env.SPOTIFY_REFRESH_TOKEN);
@@ -50,7 +51,7 @@ export const createPlaylist = async (
 };
 
 export const addTracksToPlaylist = async (songs: string[], playlistId): Promise<void> => {
-  return spotifyApi
-    .addTracksToPlaylist(playlistId, songs)
-    .then(() => console.log(`Playlist created on ${formatDate(new Date(), true)}!`));
+  const message = `Weekly playlist created on ${formatDate(new Date(), true)}!`;
+
+  return spotifyApi.addTracksToPlaylist(playlistId, songs).then(() => sendTelegramMessage(message));
 };
